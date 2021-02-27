@@ -16,7 +16,7 @@ class CategoryItem extends StatelessWidget {
         gradient: LinearGradient(
             colors: [
               // color ta grid e suru hobe ektu transparent vive niye then real color ta asbe
-              color.withOpacity(0.7),
+              color.withOpacity(0.5),
               color,
             ],
             // for direction of the color
