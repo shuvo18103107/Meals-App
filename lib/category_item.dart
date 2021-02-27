@@ -2,13 +2,18 @@ import 'package:flutter/material.dart';
 import './category_meals_screen.dart';
 
 class CategoryItem extends StatelessWidget {
+  final String id;
   final String title;
   final Color color;
-  CategoryItem(this.title, this.color);
+  CategoryItem(
+    this.id,
+    this.title,
+    this.color,
+  );
   void selectCategory(BuildContext ctx) {
     // current page janbe widget tree er position vujbe context diye trpr er upor r ekta screen dekhabe as a stack ,in push we add page on the stack as a topmost page and in pop we remove that page, just in stack page switching
     Navigator.of(ctx).push(MaterialPageRoute(builder: (_) {
-      return CategoryMealsScreen();
+      return CategoryMealsScreen(id, title);
     }));
   }
 

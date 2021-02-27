@@ -22,8 +22,11 @@ class CategoriesScreen extends StatelessWidget {
                 crossAxisSpacing: 20,
                 mainAxisSpacing: 20),
             // now lets take list of list item and turn into  widget
-            children: DUMMY_CATEGORIES.map(
-                // this function is execute on every item in the list and shoul return a widget on every categoryitem on the list
-                (catData) => CategoryItem(catData.title, catData.color)).toList()));
+            children: DUMMY_CATEGORIES
+                .map(
+                    // this function is execute on every item in the list and shoul return a widget on every categoryitem on the list
+                    (catData) =>
+                        CategoryItem(catData.id, catData.title, catData.color))
+                .toList()));
   }
 }
