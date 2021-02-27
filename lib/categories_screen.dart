@@ -10,6 +10,8 @@ class CategoriesScreen extends StatelessWidget {
           title: const Text('DeliMeal'),
         ),
         body: GridView(
+            padding: EdgeInsets.all(25),
+
             // silvers are scrollable area in the screen so grid is also scrollable as default , delegate take care of structure of the grid,maxcrosaxisextend provides maximum width of each item
             gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
                 // device size jodi 300px hoi taile per row 1 ta kore tile bosbee like listview
