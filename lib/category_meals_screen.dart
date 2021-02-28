@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import './dummy_data.dart';
 
 class CategoryMealsScreen extends StatelessWidget {
 // it is the property that can be access without initialize the  class
@@ -22,12 +23,23 @@ class CategoryMealsScreen extends StatelessWidget {
     final categoryTitle = routeArgs['title'];
     final categoryId = routeArgs['id'];
 
+    final categoryMeals = DUMMY_MEALS.where(
+        //meals take each item as a input parameter and return a iterable list if satisfied the condition
+        (meals) {
+      return meals.categories.contains(categoryId);
+    }).toList();
+    print(categoryMeals);
+
     return Scaffold(
         appBar: AppBar(
           title: Text(categoryTitle),
         ),
         body: ListView.builder(
-          itemBuilder: (ctx, index) {},
+          itemBuilder: (ctx, index) {
+            return Text(categoryMeals[index].title);
+          },
+          itemCount: categoryMeals.length,
+          // cg category meals ekta list return kore jeta selected item er id er sathe meals list er jei id milbe sei meals gulai dekhabo listview te
         ));
   }
 }
