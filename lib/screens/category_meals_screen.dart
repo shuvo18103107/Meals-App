@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import './dummy_data.dart';
+import '../widgets/meal_item.dart';
+import '../dummy_data.dart';
 
 class CategoryMealsScreen extends StatelessWidget {
 // it is the property that can be access without initialize the  class
@@ -36,7 +37,12 @@ class CategoryMealsScreen extends StatelessWidget {
         ),
         body: ListView.builder(
           itemBuilder: (ctx, index) {
-            return Text(categoryMeals[index].title);
+            return MealItem(
+                title: categoryMeals[index].title,
+                imageUrl: categoryMeals[index].imageUrl,
+                affordability: categoryMeals[index].affordability,
+                complexity: categoryMeals[index].complexity,
+                duration: categoryMeals[index].duration);
           },
           itemCount: categoryMeals.length,
           // cg category meals ekta list return kore jeta selected item er id er sathe meals list er jei id milbe sei meals gulai dekhabo listview te
