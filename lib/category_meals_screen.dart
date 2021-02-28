@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 
 class CategoryMealsScreen extends StatelessWidget {
+// it is the property that can be access without initialize the  class
+  static const routeName = '/category-meals';
+
   // final String catId;
   // final String cattitle;
   // CategoryMealsScreen(

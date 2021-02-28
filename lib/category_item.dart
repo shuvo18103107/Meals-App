@@ -12,7 +12,7 @@ class CategoryItem extends StatelessWidget {
   );
   void selectCategory(BuildContext ctx) {
     // current page janbe widget tree er position vujbe context diye trpr er upor r ekta screen dekhabe as a stack ,in push we add page on the stack as a topmost page and in pop we remove that page, just in stack page switching
-    Navigator.of(ctx).pushNamed('/category-meals',
+    Navigator.of(ctx).pushNamed(CategoryMealsScreen.routeName,
         // arguments can anything , num,string,map,object anything...in our case we pass a map
         arguments: {'id': id, 'title': title});
   }

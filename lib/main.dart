@@ -30,9 +30,17 @@ class MyApp extends StatelessWidget {
                   fontSize: 20,
                   fontFamily: 'RobotoCondensed',
                   fontWeight: FontWeight.bold))),
-      home: CategoriesScreen(),
+      // home: CategoriesScreen(),
+      initialRoute: '/', //default is '/'
       // using route tabel
-      routes: {'/category-meals': (_) => CategoryMealsScreen()},
+      routes: {
+        // home page route  insttead of using home argument
+        '/': (_) => CategoriesScreen(),
+
+        CategoryMealsScreen.routeName: (_) => CategoryMealsScreen()
+        // we can type this route name but drawback is we have to manually type this routename in pushNamed method so type e vul hole app break hote pare eta ekta jamela
+        //builder function
+      },
     );
   }
 }
