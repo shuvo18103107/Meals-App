@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import './screens/category_meals_screen.dart';
 import './screens/categories_screen.dart';
+import './screens/meal_detail_screen.dart';
 
 void main() {
   runApp(MyApp());
@@ -37,7 +38,8 @@ class MyApp extends StatelessWidget {
         // home page route  insttead of using home argument
         '/': (_) => CategoriesScreen(),
 
-        CategoryMealsScreen.routeName: (_) => CategoryMealsScreen()
+        CategoryMealsScreen.routeName: (_) => CategoryMealsScreen(),
+        MealDetailScreen.routeName: (_) => MealDetailScreen()
         // we can type this route name but drawback is we have to manually type this routename in pushNamed method so type e vul hole app break hote pare eta ekta jamela
         //builder function
       },
