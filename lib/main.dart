@@ -43,6 +43,28 @@ class MyApp extends StatelessWidget {
         // we can type this route name but drawback is we have to manually type this routename in pushNamed method so type e vul hole app break hote pare eta ekta jamela
         //builder function
       },
+// rote tabel e kono requested route na pele  ongenerate route by defaulr kaj kore
+
+      // when route generate dynamically we don't know in advanced that time we can use ongenerate route
+      // onGenerateRoute: (setting) {
+      //   print(setting.arguments);
+      //   if(setting.name == '/meals-page')
+      //   {
+      //     // return // some another route
+      //   }
+      //   else if (setting.name=='/another-page')
+      //   {
+      //     // rerurn some other route page
+      //   }
+      //   return MaterialPageRoute(builder: (_) => CategoriesScreen());
+      // });
+
+// onknknown route
+// when we defines nothing on ongenerate route and route tabel then onunknown route work, app crash er theke error er jonno ei route use kora better like 404 page
+// onUnknownRoute: (setting)
+// {
+// return MaterialPageRoute(builder: (_) => CategoriesScreen());
+// },
     );
   }
 }
