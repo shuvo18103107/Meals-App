@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:meals_app/screens/tabs_Screen.dart';
 import './screens/category_meals_screen.dart';
-import './screens/categories_screen.dart';
+import './screens/tabs_Screen.dart';
 import './screens/meal_detail_screen.dart';
 
 void main() {
@@ -36,7 +37,7 @@ class MyApp extends StatelessWidget {
       // using route tabel
       routes: {
         // home page route  insttead of using home argument
-        '/': (_) => CategoriesScreen(),
+        '/': (_) => TabsScreen(),
 
         CategoryMealsScreen.routeName: (_) => CategoryMealsScreen(),
         MealDetailScreen.routeName: (_) => MealDetailScreen()
