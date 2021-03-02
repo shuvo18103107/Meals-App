@@ -40,61 +40,75 @@ class MealDetailScreen extends StatelessWidget {
     });
 
     return Scaffold(
-        appBar: AppBar(
-          title: Text('${selectedMeal.title}'),
-        ),
-        body: SingleChildScrollView(
-          child: Column(
-            children: [
-              Container(
-                  height: 300,
-                  width: double.infinity,
-                  child: Image.network(
-                    selectedMeal.imageUrl,
-                    fit: BoxFit.cover,
-                  )),
-              buildsectiontitle(context, 'Ingredients'),
-              buildcontainer(
-                ListView.builder(
-                  itemBuilder: (ctx, index) {
-                    return Card(
-                      color: Theme.of(context).accentColor,
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 10, vertical: 5),
-                        child: Text(
-                          selectedMeal.ingredients[index],
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                          ),
+      appBar: AppBar(
+        title: Text('${selectedMeal.title}'),
+      ),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Container(
+                height: 300,
+                width: double.infinity,
+                child: Image.network(
+                  selectedMeal.imageUrl,
+                  fit: BoxFit.cover,
+                )),
+            buildsectiontitle(context, 'Ingredients'),
+            buildcontainer(
+              ListView.builder(
+                itemBuilder: (ctx, index) {
+                  return Card(
+                    color: Theme.of(context).accentColor,
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 10, vertical: 5),
+                      child: Text(
+                        selectedMeal.ingredients[index],
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
                         ),
                       ),
-                    );
-                  },
-                  itemCount: selectedMeal.ingredients.length,
-                ),
+                    ),
+                  );
+                },
+                itemCount: selectedMeal.ingredients.length,
               ),
-              buildsectiontitle(context, 'Steps'),
-              buildcontainer(
-                ListView.builder(
-                  itemBuilder: (ctx, index) => Column(
-                    children: [
-                      ListTile(
-                        leading: CircleAvatar(
-                          child: Text('${(index + 1)}'),
-                        ),
-                        title: Text(selectedMeal.steps[index]),
+            ),
+            buildsectiontitle(context, 'Steps'),
+            buildcontainer(
+              ListView.builder(
+                itemBuilder: (ctx, index) => Column(
+                  children: [
+                    ListTile(
+                      leading: CircleAvatar(
+                        child: Text('${(index + 1)}'),
                       ),
-                      Divider(
-                        color: Colors.brown,
-                      )
-                    ],
-                  ),
-                  itemCount: selectedMeal.steps.length,
+                      title: Text(selectedMeal.steps[index]),
+                    ),
+                    Divider(
+                      color: Colors.brown,
+                    )
+                  ],
                 ),
-              )
-            ],
-          ),
-        ));
+                itemCount: selectedMeal.steps.length,
+              ),
+            )
+          ],
+        ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.delete),
+        onPressed: () {
+          // by click this icon i want to go back so we can use navigator.pop
+          //pop remove screen that are on the top of the stack things like dialog ,modalbottomshit we can use pop to remove those screens
+          // so pop removes a screen , same as the back button by default when we use navigation push
+          //popAndpushNamed ipop the current page and then push a new page
+          Navigator.of(context).pop(
+              // so we can pass data when we poping any page ,it can be any data string,map,list,num ...
+
+              mealId);
+        },
+      ),
+    );
   }
 }

@@ -9,6 +9,7 @@ class MealItem extends StatelessWidget {
   final int duration;
   final Complexity complexity;
   final Affordability affordability;
+  final Function removeItem;
   MealItem({
     @required this.title,
     @required this.imageUrl,
@@ -16,6 +17,7 @@ class MealItem extends StatelessWidget {
     @required this.complexity,
     @required this.affordability,
     @required this.id,
+    @required this.removeItem,
   });
 //convert enum value into text using getter
   String get complixityText {
@@ -51,7 +53,13 @@ class MealItem extends StatelessWidget {
   }
 
   void selectMeal(BuildContext ctx) {
-    Navigator.of(ctx).pushNamed(MealDetailScreen.routeName, arguments: id);
+    Navigator.of(ctx).pushNamed(MealDetailScreen.routeName, arguments: id)
+        // if we return something from the mealdetails screen like pop with data then we get it from the future then method
+        .then((result) {
+      if (result != null) {
+        removeItem(result);
+      }
+    });
   }
 
   @override
