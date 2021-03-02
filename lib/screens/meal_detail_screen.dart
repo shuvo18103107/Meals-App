@@ -6,6 +6,7 @@ class MealDetailScreen extends StatelessWidget {
   // same functionaliuty just some changes then we can make separate widget and call it in the specific position
   // basically use for code duplication
   Widget buildsectiontitle(BuildContext ctx, String title) {
+    // as it change the theme so context needed
     return Container(
         margin: EdgeInsets.symmetric(vertical: 10),
         // margin: EdgeInsets.only(top: 10),

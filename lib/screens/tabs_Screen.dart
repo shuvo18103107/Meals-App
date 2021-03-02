@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../screens/favourite_screen.dart';
 import '../screens/categories_screen.dart';
+import '../widgets/main_drawer.dart';
 
 class TabsScreen extends StatefulWidget {
   @override
@@ -33,6 +34,10 @@ class _TabsScreenState extends State<TabsScreen> {
       appBar: AppBar(
         title: Text(_pages[_selectedPageIndex]['title']),
       ),
+
+      // Adding drawer
+
+      drawer: Drawer(child: Maindrawer()),
       body: _pages[_selectedPageIndex]['page'],
       bottomNavigationBar: BottomNavigationBar(
         // bottomnavigationbar e manually kaj koraite hobe which tab user select and the content also
