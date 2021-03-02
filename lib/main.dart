@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import './screens/filter_screen.dart';
 import 'package:meals_app/screens/tabs_Screen.dart';
 import './screens/category_meals_screen.dart';
 import './screens/tabs_Screen.dart';
@@ -40,7 +41,8 @@ class MyApp extends StatelessWidget {
         '/': (_) => TabsScreen(),
 
         CategoryMealsScreen.routeName: (_) => CategoryMealsScreen(),
-        MealDetailScreen.routeName: (_) => MealDetailScreen()
+        MealDetailScreen.routeName: (_) => MealDetailScreen(),
+        FilterScreen.routeName: (_) => FilterScreen()
         // we can type this route name but drawback is we have to manually type this routename in pushNamed method so type e vul hole app break hote pare eta ekta jamela
         //builder function
       },
