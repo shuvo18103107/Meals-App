@@ -45,9 +45,15 @@ class Maindrawer extends StatelessWidget {
             height: 20,
           ),
           drawerItem('Meals', Icons.restaurant,
-              () => Navigator.of(context).pushNamed('/')),
-          drawerItem('Favourites', Icons.settings,
-              () => Navigator.of(context).pushNamed(FilterScreen.routeName)),
+              () => Navigator.of(context).pushReplacementNamed('/')),
+          //by using the pushreplacenamed instead of pushnamed  we replace the existence page in the stack with the new page  so we donot add the new page on top of the stack we just replace it
+          // so now we cannt go back
+
+          drawerItem(
+              'Favourites',
+              Icons.settings,
+              () => Navigator.of(context)
+                  .pushReplacementNamed(FilterScreen.routeName)),
         ],
       ),
     );
