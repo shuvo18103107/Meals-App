@@ -14,6 +14,7 @@ class CategoryMealsScreen extends StatefulWidget {
 class _CategoryMealsScreenState extends State<CategoryMealsScreen> {
   String categoryTitle;
   List<Meal> categoryMeals;
+  var _loadInitdata = false;
 
   //initstat automatic run before build run that means before widget created it called
   // in int stat we can use cof context related data cg its call too early before widget created so we can use didchangedependencies
@@ -25,10 +26,11 @@ class _CategoryMealsScreenState extends State<CategoryMealsScreen> {
   // }
   // However both of them are called before build is called. Only difference is that one is called before the state loads its dependencies and other is called a few moments after the state loads its dependencies.
   @override
+  // bar bar didchangedependency r call korbe na first time e initialize hbe erpr setstat call korle just baki kaj er jonno build call hbe
   void didChangeDependencies() {
     // _loadedInitdata==false
 //that means we hav not loaded initialize data yet
-    {
+    if (_loadInitdata == false) {
       final routeArgs =
           ModalRoute.of(context).settings.arguments as Map<String, String>;
 
@@ -44,9 +46,10 @@ class _CategoryMealsScreenState extends State<CategoryMealsScreen> {
           (meals) {
         return meals.categories.contains(categoryId);
       }).toList();
-    }
 
-    super.didChangeDependencies();
+      _loadInitdata = true;
+      super.didChangeDependencies();
+    }
   }
 
   //pop call korar por page build howar somoi widget build er vitore access korle kaj hobe na tai initstat ei korte hobe
