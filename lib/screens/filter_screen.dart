@@ -53,9 +53,9 @@ class _FilterScreenState extends State<FilterScreen> {
                     });
                   }),
                   _switchlistTile('Lactos-free',
-                      'Only include lactose free meals', _glutenFree, (ontap) {
+                      'Only include lactose free meals', _lactosFree, (ontap) {
                     setState(() {
-                      _glutenFree = ontap;
+                      _lactosFree = ontap;
                     });
                   }),
                   _switchlistTile('Vegetarian', 'Only include vegetarian meals',

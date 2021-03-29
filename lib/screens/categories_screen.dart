@@ -14,7 +14,7 @@ class CategoriesScreen extends StatelessWidget {
             maxCrossAxisExtent: 200,
             // how the item should be size regarding their height and width
             childAspectRatio: 3 / 2, // 200 width with 300 hundred height
-            // yhow much space is take each grid from row and column
+            // how much space is take each grid from row and column
             crossAxisSpacing: 20,
             mainAxisSpacing: 20),
         // now lets take list of list item and turn into  widget

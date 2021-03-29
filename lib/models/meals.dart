@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
-// this foundation dart file unlock required decorator
 
-// enum is a type like we can set couple of choices from ouroption
+// this foundation dart file unlock required decorator
+// enum is a type like we can set couple of choices from our option
 // behind the scene dart simply use 0,1,2 here, its map this value into normal int but as a developer we can read the label values
 enum Complexity { Simple, Challenging, Hard }
 enum Affordability { Affordable, Pricey, Luxurious }

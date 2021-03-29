@@ -66,6 +66,7 @@ class MealItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () => selectMeal(context),
+      splashColor: Theme.of(context).primaryColor,
       child: Card(
         //here using shape i override the card default behaviour
         shape: RoundedRectangleBorder(
@@ -158,7 +159,6 @@ class MealItem extends StatelessWidget {
           ],
         ),
       ),
-      splashColor: Theme.of(context).primaryColor,
     );
   }
 }
