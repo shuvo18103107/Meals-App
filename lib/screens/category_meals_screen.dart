@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import '../models/meals.dart';
 import '../widgets/meal_item.dart';
-import '../dummy_data.dart';
 
 class CategoryMealsScreen extends StatefulWidget {
 // it is the property that can be access without initialize the  class
   static const routeName = '/category-meals';
+  final List<Meal> availableMeals;
+  CategoryMealsScreen(this.availableMeals);
 
   @override
   _CategoryMealsScreenState createState() => _CategoryMealsScreenState();
@@ -41,7 +42,7 @@ class _CategoryMealsScreenState extends State<CategoryMealsScreen> {
       // catid paowar por r change korte parbo na cg final
       final categoryId = routeArgs['id'];
 
-      categoryMeals = DUMMY_MEALS.where(
+      categoryMeals = widget.availableMeals.where(
           //meals take each item as a input parameter and return a iterable list if satisfied the condition
           (meals) {
         return meals.categories.contains(categoryId);

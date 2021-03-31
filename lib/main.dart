@@ -1,15 +1,54 @@
 import 'package:flutter/material.dart';
+import 'package:meals_app/dummy_data.dart';
+import 'package:meals_app/models/meals.dart';
 import './screens/filter_screen.dart';
 import 'package:meals_app/screens/tabs_Screen.dart';
 import './screens/category_meals_screen.dart';
 import './screens/tabs_Screen.dart';
 import './screens/meal_detail_screen.dart';
+import './dummy_data.dart';
 
 void main() {
   runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
+  @override
+  _MyAppState createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  // in filter screen by clicking any button the change will catch here, filtter screen pass data by refer a function and then we update here
+  Map<String, bool> _filters = {
+    'gluten': false,
+    'lactose': false,
+    'vegan': false,
+    'vegetarian': false,
+  };
+  List<Meal> _availableMeals = DUMMY_MEALS;
+  void _setFilters(Map<String, bool> filterData) {
+//update the map
+    setState(() {
+      _filters = filterData;
+      _availableMeals = DUMMY_MEALS.where((meals) {
+        //  filter map e glutin true mane eita exclude korte hbe r 2nd condition like jodi glutenfree na hoi mane map e giya dekhlo false kora mane glutin ace taile excluded
+        if (_filters['gluten'] && !meals.isGlutenFree) {
+          return false;
+        }
+        if (_filters['lactose'] && !meals.isLactoseFree) {
+          return false;
+        }
+        if (_filters['vegan'] && !meals.isVegan) {
+          return false;
+        }
+        if (_filters['vegetarian'] && !meals.isVegetarian) {
+          return false;
+        }
+        return true;
+      }).toList();
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -40,9 +79,10 @@ class MyApp extends StatelessWidget {
         // home page route  insttead of using home argument
         '/': (_) => TabsScreen(),
 
-        CategoryMealsScreen.routeName: (_) => CategoryMealsScreen(),
+        CategoryMealsScreen.routeName: (_) =>
+            CategoryMealsScreen(_availableMeals),
         MealDetailScreen.routeName: (_) => MealDetailScreen(),
-        FilterScreen.routeName: (_) => FilterScreen()
+        FilterScreen.routeName: (_) => FilterScreen(_filters, _setFilters)
         // we can type this route name but drawback is we have to manually type this routename in pushNamed method so type e vul hole app break hote pare eta ekta jamela
         //builder function
       },

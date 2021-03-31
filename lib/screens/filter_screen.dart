@@ -3,6 +3,11 @@ import '../widgets/main_drawer.dart';
 
 class FilterScreen extends StatefulWidget {
   static const routeName = '/filter-screen';
+  // initialize the passing data from main.dart file
+  final Function saveFilters;
+  final Map<String, bool> currentFilters;
+
+  FilterScreen(this.currentFilters, this.saveFilters);
 
   @override
   _FilterScreenState createState() => _FilterScreenState();
@@ -13,6 +18,14 @@ class _FilterScreenState extends State<FilterScreen> {
   var _vegetarian = false;
   var _vegan = false;
   var _lactosFree = false;
+  @override
+  initState() {
+    _glutenFree = widget.currentFilters['gluten'];
+    _vegetarian = widget.currentFilters['vegetarian'];
+    _vegan = widget.currentFilters['vegan'];
+    _lactosFree = widget.currentFilters['lactose'];
+    super.initState();
+  }
 
   Widget _switchlistTile(
       String title, String subtitle, bool currentValue, Function updateValue) {
@@ -31,6 +44,21 @@ class _FilterScreenState extends State<FilterScreen> {
     return Scaffold(
         appBar: AppBar(
           title: Text('filter screen'),
+          actions: [
+            IconButton(
+                icon: Icon(Icons.save),
+                // cg reference is store in filterscreen widget not in stat so for accessing we need widget property
+                //user er filter kora data pathabo
+                onPressed: () {
+                  final selectedFilters = {
+                    'gluten': _glutenFree,
+                    'lactose': _lactosFree,
+                    'vegan': _vegan,
+                    'vegetarian': _vegetarian,
+                  };
+                  widget.saveFilters(selectedFilters);
+                })
+          ],
         ),
         drawer: Maindrawer(),
         body: Column(
