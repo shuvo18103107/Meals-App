@@ -1,22 +1,18 @@
 import 'package:flutter/material.dart';
+import '../models/meals.dart';
 import '../screens/favourite_screen.dart';
 import '../screens/categories_screen.dart';
 import '../widgets/main_drawer.dart';
 
 class TabsScreen extends StatefulWidget {
+  final List<Meal> favouriteMeals;
+  TabsScreen(this.favouriteMeals);
   @override
   _TabsScreenState createState() => _TabsScreenState();
 }
 
 class _TabsScreenState extends State<TabsScreen> {
-  final List<Map<String, Object>> _pages = [
-    {
-      'page': CategoriesScreen(), 'title': 'Categories',
-      // if want some action
-      // 'action': FlatButton() in that way we can add dynamically
-    },
-    {'page': FavouriteScreen(), 'title': 'Your Favourites'}
-  ];
+  List<Map<String, Object>> _pages;
 
   int _selectedPageIndex = 0;
 // now we get which item i tapped
@@ -24,6 +20,23 @@ class _TabsScreenState extends State<TabsScreen> {
     setState(() {
       _selectedPageIndex = index;
     });
+  }
+
+  @override
+  void initState() {
+    _pages = [
+      {
+        'page': CategoriesScreen(), 'title': 'Categories',
+        // if want some action
+        // 'action': FlatButton() in that way we can add dynamically
+      },
+      //cg widget stat er vitor call korte pari na cg eta stat e available na so initstat call kore dilam cg widget ekhane available , it calls before build call
+      {
+        'page': FavouriteScreen(widget.favouriteMeals),
+        'title': 'Your Favourites'
+      }
+    ];
+    super.initState();
   }
 
   @override

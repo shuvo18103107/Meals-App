@@ -26,6 +26,7 @@ class _MyAppState extends State<MyApp> {
     'vegetarian': false,
   };
   List<Meal> _availableMeals = DUMMY_MEALS;
+  List<Meal> _favouriteMeals = [];
   void _setFilters(Map<String, bool> filterData) {
 //update the map
     setState(() {
@@ -47,6 +48,31 @@ class _MyAppState extends State<MyApp> {
         return true;
       }).toList();
     });
+  }
+//logic for adding and removing favourite
+// this method recieve a id of meal and added it on favouritemealsList and also avoid duplication of meal in the list
+
+  // by receiving the meal id i added it on the favourite meal list , if its already added then i removed it
+  void _toogleFavourite(String mealId) {
+    //it will give the index of certain element in the list , if it is not in the list index will be -1
+    // if i find that mealid in the list then i remove it from the list
+    final existingIndex =
+        _favouriteMeals.indexWhere((meal) => meal.id == mealId);
+    if (existingIndex >= 0) {
+      setState(() {
+        _favouriteMeals.removeAt(existingIndex);
+      });
+    } else {
+      setState(() {
+        _favouriteMeals
+            .add(DUMMY_MEALS.firstWhere((meal) => meal.id == mealId));
+      });
+    }
+  }
+
+  bool _isMealFavorite(String id) {
+    // search dibe id first e  pelei true return korbe
+    return _favouriteMeals.any((meal) => meal.id == id);
   }
 
   @override
@@ -77,11 +103,13 @@ class _MyAppState extends State<MyApp> {
       // using route tabel
       routes: {
         // home page route  insttead of using home argument
-        '/': (_) => TabsScreen(),
+        // as favouritescreen belongs to tabscreen so we give the list to tab screen so that we can pass it to favourite screen in the tabscreen
+        '/': (_) => TabsScreen(_favouriteMeals),
 
         CategoryMealsScreen.routeName: (_) =>
             CategoryMealsScreen(_availableMeals),
-        MealDetailScreen.routeName: (_) => MealDetailScreen(),
+        MealDetailScreen.routeName: (_) =>
+            MealDetailScreen(_toogleFavourite, _isMealFavorite),
         FilterScreen.routeName: (_) => FilterScreen(_filters, _setFilters)
         // we can type this route name but drawback is we have to manually type this routename in pushNamed method so type e vul hole app break hote pare eta ekta jamela
         //builder function

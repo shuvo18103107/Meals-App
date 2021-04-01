@@ -3,6 +3,11 @@ import '../dummy_data.dart';
 
 class MealDetailScreen extends StatelessWidget {
   static const routeName = '/meals-detail';
+
+  final Function toogleFavourite;
+  final Function isFavourite;
+  MealDetailScreen(this.toogleFavourite, this.isFavourite);
+
   // same functionaliuty just some changes then we can make separate widget and call it in the specific position
   // basically use for code duplication
   Widget buildsectiontitle(BuildContext ctx, String title) {
@@ -97,17 +102,17 @@ class MealDetailScreen extends StatelessWidget {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.delete),
-        onPressed: () {
-          // by click this icon i want to go back so we can use navigator.pop
-          //pop remove screen that are on the top of the stack things like dialog ,modalbottomshit we can use pop to remove those screens
-          // so pop removes a screen , same as the back button by default when we use navigation push
-          //popAndpushNamed ipop the current page and then push a new page
-          Navigator.of(context).pop(
-              // so we can pass data when we poping any page ,it can be any data string,map,list,num ...
+        child: Icon(isFavourite(mealId) ? Icons.star : Icons.star_border),
+        //reference dilei hbe na just argument pass kora lagbe tai
+        onPressed: () => toogleFavourite(mealId),
+        // by click this icon i want to go back so we can use navigator.pop
+        //pop remove screen that are on the top of the stack things like dialog ,modalbottomshit we can use pop to remove those screens
+        // so pop removes a screen , same as the back button by default when we use navigation push
+        //popAndpushNamed ipop the current page and then push a new page
+        // Navigator.of(context).pop(
+        //     // so we can pass data when we poping any page ,it can be any data string,map,list,num ...
 
-              mealId);
-        },
+        //     mealId);
       ),
     );
   }
